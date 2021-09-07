@@ -1,0 +1,82 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+def AAVersion='4.5.2'
+
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "28.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    useLibrary 'org.apache.http.legacy'
+
+}
+
+
+
+dependencies {
+    api "com.android.support:support-v4:${project.supportLibVersion}"
+    api project(':galleryfinal')
+    api 'com.google.code.gson:gson:2.2.2'
+    api 'org.greenrobot:eventbus:3.1.1'
+//    api files('libs/android-support-v4.jar')
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
+    api "org.androidannotations:androidannotations-api:$AAVersion"
+    api 'com.android.support:support-annotations:23.1.1'
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api 'com.lzy.net:okgo:3.0.4'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    api 'com.google.zxing:core:3.2.1'
+    api 'pub.devrel:easypermissions:0.4.2'
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    api "io.reactivex.rxjava2:rxjava:2.0.0"
+
+
+
+
+
+}
+//
+//publish {
+//    repoName = 'farwolf'
+//    //userOrg这个是用户的组织，我们创建的是个人帐号，也就是我们的用户名（后续会介绍，必须一致，改成你自己的bintrayName）
+//    userOrg = 'farwolf2010'
+//    //我们的组id 类比'com.github.bumptech.glide:glide:3.7.0' 中的 com.github.bumptech.glide 这一部分
+//    groupId = 'com.farwolf.weexplus'
+//    //原型id 类比'com.github.bumptech.glide:glide:3.7.0' 中的glide这一部分
+//    artifactId = 'farwolf'
+//    //版本号 类比'com.github.bumptech.glide:glide:3.7.0' 中的3.7.0 这一部分。很重要，我们在更新aar文件的时候需要提升版本号，类似更新apk
+//    publishVersion = '1.0.1'
+//    //描述，大致介绍自己的类库
+//    desc = 'weexplus基础库'
+//
+//}
+
+//apt {
+//    arguments {
+//        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+//        // if you have multiple outputs (when using splits), you may want to have other index than 0
+//
+//        // you should set your package name here if you are using different application IDs
+//        // resourcePackageName "your.package.name"
+//
+//        // You can set optional annotation processing options here, like these commented options:
+//        // logLevel 'INFO'
+//        // logFile '/var/log/aa.log'
+//    }
+//}
